@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+static NSString *const apiURL = @"http://localhost/restapi";
+
 @interface BTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
