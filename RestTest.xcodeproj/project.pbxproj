@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		431338D01918AED600797850 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 431338CF1918AED600797850 /* CoreLocation.framework */; };
 		4313C929191378F200F98157 /* BTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4313C928191378F200F98157 /* BTLoginViewController.m */; };
 		4322CB3119150568000E9549 /* BTFavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4322CB3019150568000E9549 /* BTFavoritesTableViewController.m */; };
 		4322CB3419150585000E9549 /* BTClosestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4322CB3319150585000E9549 /* BTClosestTableViewController.m */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		431338CF1918AED600797850 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4313C927191378F200F98157 /* BTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLoginViewController.h; sourceTree = "<group>"; };
 		4313C928191378F200F98157 /* BTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLoginViewController.m; sourceTree = "<group>"; };
 		4322CB2F19150568000E9549 /* BTFavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTFavoritesTableViewController.h; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				431338D01918AED600797850 /* CoreLocation.framework in Frameworks */,
 				4336961E190E37CE00165434 /* CoreGraphics.framework in Frameworks */,
 				43369622190E37CE00165434 /* CoreData.framework in Frameworks */,
 				43369620190E37CE00165434 /* UIKit.framework in Frameworks */,
@@ -157,6 +160,7 @@
 		4336961A190E37CE00165434 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				431338CF1918AED600797850 /* CoreLocation.framework */,
 				4336961B190E37CE00165434 /* Foundation.framework */,
 				4336961D190E37CE00165434 /* CoreGraphics.framework */,
 				4336961F190E37CE00165434 /* UIKit.framework */,

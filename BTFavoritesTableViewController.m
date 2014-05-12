@@ -23,7 +23,7 @@
  * Parameters: none
  * Returns: Array of Dictionaries containing locations.
 */
-- (NSArray *) fetchLocations
+- (void) fetchLocations
 {
     // set up AFNetworking, connect and fetch the locations.
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:self.serviceURL]];
@@ -49,9 +49,14 @@
             // we got an OK response, process the Dictionary data and return the array of objects.
             NSDictionary *locationsOutput = [response objectForKey:@"output"];
             
-            for (id key in [locationsOutput allKeys]) {
+            for (NSString* key in locationsOutput) {
                 [locationsList addObject:[locationsOutput objectForKey:key]];
+                NSLog(@"Value is: %@", [locationsOutput objectForKey:key]);
+                
             }
+            //NSLog(@"Locations added %i ", [locationsList count]);
+            self.locations = [locationsList mutableCopy];
+            [self.tableView reloadData];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -59,7 +64,6 @@
         UIAlertView *httpErrorView = [[UIAlertView alloc] initWithTitle:@"Request error" message:@"A service request error occurred. Please try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [httpErrorView show];
     }];
-    return locationsList;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -89,13 +93,12 @@
     
     // also set the URL
     self.serviceURL = [apiURL stringByAppendingString:@"/get_employee_favouritelocations"];
+    // fetch locations
+   
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    // fetch locations
-    self.locations = [[self fetchLocations] mutableCopy];
-    
-    [self.tableView reloadData];
+    self.tableView.contentInset = UIEdgeInsetsMake(64.0f, 0.0f, 0.0f, 0.0f);
+    [self fetchLocations];
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,28 +111,29 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [locations count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"FavoriteCell" forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.textLabel.text = [[locations objectAtIndex:indexPath.row] objectForKey:@"locationname"];
+    cell.detailTextLabel.text = [[locations objectAtIndex:indexPath.row] objectForKey:@"street_address"];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

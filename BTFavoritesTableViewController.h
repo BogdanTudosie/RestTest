@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BTFavoritesTableViewController : UITableViewController
+@interface BTFavoritesTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (copy, nonatomic) NSString *sessionKey;
 @property (strong, nonatomic) NSString *serviceURL;

@@ -16,8 +16,6 @@
 
 @implementation BTMainViewController
 
-
-
 // synthesize properties
 @synthesize session, urlToUse;
 

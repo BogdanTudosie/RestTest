@@ -10,6 +10,8 @@
 
 @interface BTAgreementTableViewController : UITableViewController
 
+@property (copy, nonatomic) NSString *sessionKey;
 @property (strong, nonatomic) NSString *serviceURL;
+@property (strong, nonatomic) NSMutableArray *locations;
 
 @end
