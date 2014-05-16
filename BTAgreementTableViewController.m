@@ -9,6 +9,7 @@
 #import "BTAgreementTableViewController.h"
 #import "BTMainViewController.h"
 #import "BTAppDelegate.h"
+#import "BTCompleteOrderViewController.h"
 
 @interface BTAgreementTableViewController ()
 
@@ -113,14 +114,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [locations count];
 }
@@ -134,6 +133,11 @@
     cell.detailTextLabel.text = [[locations objectAtIndex:indexPath.row] objectForKey:@"street_address"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"agreementPay" sender:self];
 }
 
 
@@ -175,7 +179,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -183,7 +187,21 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"agreementPay"]) {
+        BTCompleteOrderViewController *destination = [segue destinationViewController];
+        
+        NSDictionary *location = [locations objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        NSString *locationName = [location objectForKey:@"locationname"];
+        NSString *address = [location objectForKey:@"street_address"];
+        NSDictionary *values = [location objectForKey:@"agreedPrice"];
+        NSArray *accepted = [location objectForKey:@"accepted_vouchers"];
+        
+        destination.name = locationName;
+        destination.address = address;
+        destination.values = values;
+        destination.acceptedVouchers = accepted;
+    }
 }
-*/
+
 
 @end

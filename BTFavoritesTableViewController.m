@@ -9,6 +9,7 @@
 #import "BTFavoritesTableViewController.h"
 #import "BTMainViewController.h"
 #import "BTAppDelegate.h"
+#import "BTCompleteOrderViewController.h"
 
 @interface BTFavoritesTableViewController ()
 
@@ -134,6 +135,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"favoritePay" sender:self];
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -173,7 +179,7 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -181,7 +187,21 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"favoritePay"]) {
+        BTCompleteOrderViewController *destination = [segue destinationViewController];
+        
+        NSDictionary *location = [locations objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        NSString *locationName = [location objectForKey:@"locationname"];
+        NSString *address = [location objectForKey:@"street_address"];
+        NSDictionary *values = [location objectForKey:@"agreedPrice"];
+        NSArray *accepted = [location objectForKey:@"accepted_vouchers"];
+        
+        destination.name = locationName;
+        destination.address = address;
+        destination.values = values;
+        destination.acceptedVouchers = accepted;
+    }
 }
-*/
+
 
 @end

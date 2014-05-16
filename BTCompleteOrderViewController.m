@@ -14,6 +14,8 @@
 
 @implementation BTCompleteOrderViewController
 
+@synthesize userCompany, username, locationAddress, locationName, orderValue, user, name, address, values, company, acceptedVouchers;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,13 +28,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // set the delegate and data source for the uipickerview
+    self.voucherTypesPicker.delegate = self;
+    self.voucherTypesPicker.dataSource = self;
     // Do any additional setup after loading the view.
+    self.locationName.text = self.name;
+    self.locationAddress.text = self.address;
+    self.orderValue.text = [self.values objectForKey:@"agreementmeal"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UIPickerViewDelegate
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return [acceptedVouchers count];
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [self.acceptedVouchers objectAtIndex:row];
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+      inComponent:(NSInteger)component
+{
+    self.orderValue.text = [self.values objectForKey:[self.acceptedVouchers objectAtIndex:row]];
 }
 
 /*
