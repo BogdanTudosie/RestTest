@@ -35,7 +35,7 @@
     // Do any additional setup after loading the view.
     self.locationName.text = self.name;
     self.locationAddress.text = self.address;
-    self.orderValue.text = [self.values objectForKey:@"agreementmeal"];
+    self.orderValue.text = [self.values objectForKey:[self.acceptedVouchers objectAtIndex:[self.voucherTypesPicker selectedRowInComponent:0]]];
 }
 
 - (void)didReceiveMemoryWarning

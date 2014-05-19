@@ -52,7 +52,7 @@
             
             for (NSString* key in locationsOutput) {
                 [locationsList addObject:[locationsOutput objectForKey:key]];
-                NSLog(@"Value is: %@", [locationsOutput objectForKey:key]);
+                //NSLog(@"Value is: %@", [locationsOutput objectForKey:key]);
                 
             }
             //NSLog(@"Locations added %i ", [locationsList count]);
@@ -89,7 +89,7 @@
     {
         BTMainViewController *parent = (BTMainViewController *)self.parentViewController;
         self.sessionKey = parent.session;
-        NSLog(@"URL is %@ ", self.sessionKey);
+        //NSLog(@"URL is %@ ", self.sessionKey);
     }
     
     // also set the URL

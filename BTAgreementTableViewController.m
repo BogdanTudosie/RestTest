@@ -91,7 +91,7 @@
     {
         BTMainViewController *parent = (BTMainViewController *)self.parentViewController;
         self.sessionKey = parent.session;
-        NSLog(@"URL is %@ ", self.sessionKey);
+        //NSLog(@"URL is %@ ", self.sessionKey);
     }
     
     // also set the URL

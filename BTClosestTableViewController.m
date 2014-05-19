@@ -52,10 +52,10 @@
             
             for (NSString* key in locationsOutput) {
                 [locationsList addObject:[locationsOutput objectForKey:key]];
-                NSLog(@"Value is: %@", [locationsOutput objectForKey:key]);
+                //NSLog(@"Value is: %@", [locationsOutput objectForKey:key]);
                 
             }
-            NSLog(@"Locations added %i ", [locationsList count]);
+            //NSLog(@"Locations added %i ", [locationsList count]);
             self.closestLocations = [locationsList mutableCopy];
             [self.tableView reloadData];
         }
